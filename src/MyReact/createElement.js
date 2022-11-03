@@ -1,5 +1,12 @@
-export default function createElement (type, props, children){
+export default function createElement (type, props, ...children){
+  const childElement = children.map(child => {
+    if(child instanceof Object){
+      return child
+    }else{
+      return createElement('text', { textContent: child})
+    }
+  })
   return {
-    type, props, children
+    type, props, children: childElement
   }
 }
