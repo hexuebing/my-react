@@ -4,12 +4,13 @@ export default function createElement (type, props, ...children){
       if(child instanceof Object){
         result.push(child)
       }else{
+        // 文本节点专门转化为一个对象
         result.push(createElement('text', { textContent: child}))
       }
     }
     return result
   }, [])
   return {
-    type, props: {children: childElement, props}, children: childElement
+    type, props: Object.assign({}, props, {children: childElement}), children: childElement
   }
 }

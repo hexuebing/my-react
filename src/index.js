@@ -1,5 +1,7 @@
 import MyReact from './MyReact/index.js'
 
+const root = document.getElementById('root')
+
 const virtualDOM = (
   <div className="app">
     <h1>hello</h1>
@@ -13,5 +15,7 @@ const virtualDOM = (
     <button onClick={() => alert("👋")}>按钮</button>
   </div>
 )
+
+MyReact.render(virtualDOM, root)
 
 console.log(virtualDOM)
