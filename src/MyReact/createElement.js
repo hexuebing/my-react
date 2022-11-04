@@ -10,6 +10,6 @@ export default function createElement (type, props, ...children){
     return result
   }, [])
   return {
-    type, props, children: childElement
+    type, props: {children: childElement, props}, children: childElement
   }
 }
