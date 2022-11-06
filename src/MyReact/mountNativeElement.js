@@ -12,7 +12,7 @@ export default function mountNativeElement(virtualDOM, container){
   }
   //递归创建子节点
   virtualDOM.children.forEach(child => {
-    mountElement(child, newElement)
+    mountElement(child, newElement) // 所有子节点都调用一次，这里判断是不是原生DOM
   });
   //将转换后的真实dom节点放到容器中
   container.appendChild(newElement)

@@ -18,6 +18,12 @@ const virtualDOM = (
   </div>
 )
 
-MyReact.render(virtualDOM, root)
+function MyComponent(){
+  return <div>1234</div>
+}
 
-console.log(virtualDOM)
+function Demo(){
+  return <MyComponent></MyComponent>
+}
+
+MyReact.render(<Demo></Demo>, root)
