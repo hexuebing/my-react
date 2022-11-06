@@ -42,4 +42,26 @@ class ClassComponent extends MyReact.Component{
   }
 }
 
-MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
+// MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
+
+const newVirtualDOM = (
+  <div className="app123">
+    <h1>new Hello world</h1>
+    <div>
+      修改后的嵌套第一层
+      <div>修改后的嵌套第二层</div>
+    </div>
+    {false && <div>不该出现的JSX</div>}
+    {true && <div>该出现的JSX</div>}
+    修改后的文本
+    <button onClick={() => alert("👋")}>按钮</button>
+    <input value="123"></input>
+    <input type="checkbox" checked></input>
+  </div>
+)
+
+MyReact.render(virtualDOM, root)
+
+setTimeout(() => {
+  MyReact.render(newVirtualDOM, root)
+}, 5000)
