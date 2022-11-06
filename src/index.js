@@ -13,6 +13,8 @@ const virtualDOM = (
     {true && <div>该出现的JSX</div>}
     文本
     <button onClick={() => alert("👋")}>按钮</button>
+    <input value="123"></input>
+    <input type="checkbox" checked></input>
   </div>
 )
 

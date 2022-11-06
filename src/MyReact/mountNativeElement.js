@@ -1,4 +1,5 @@
 import mountElement from "./mountElement";
+import updateNodeElement from "./updateNodeElement";
 
 export default function mountNativeElement(virtualDOM, container){
   let newElement = null
@@ -7,6 +8,7 @@ export default function mountNativeElement(virtualDOM, container){
   }else{
     // 元素是普通节点
     newElement = document.createElement(virtualDOM.type)
+    updateNodeElement(newElement, virtualDOM)
   }
   //递归创建子节点
   virtualDOM.children.forEach(child => {
