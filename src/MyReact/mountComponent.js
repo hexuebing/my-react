@@ -5,6 +5,7 @@ export default function mountComponent(virtualDOM, container){
   let nextVirtualDOM = null;
   if(virtualDOM.type.prototype && virtualDOM.type.prototype.render){
     // 类组件
+    nextVirtualDOM = buildClassComponent(virtualDOM)
   }else{
     // 函数组件
     nextVirtualDOM = buildFunctionComponent(virtualDOM)
@@ -15,9 +16,13 @@ export default function mountComponent(virtualDOM, container){
   }else{
     mountNativeElement(nextVirtualDOM, container)
   }
-  
 }
 
 function buildFunctionComponent(virtualDOM){
   return virtualDOM.type(virtualDOM.props || {})
+}
+
+function buildClassComponent(virtualDOM){
+  const component = new virtualDOM.type(virtualDOM.props)
+  return component.render()
 }

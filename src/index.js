@@ -29,4 +29,17 @@ function Demo(props){
   </div>
 }
 
-MyReact.render(<Demo name="name"></Demo>, root)
+class ClassComponent extends MyReact.Component{
+  constructor(props){
+    super(props)
+  }
+  render(){
+    return <div>
+      {this.props.name}
+      {this.props.age}
+      hello class Component
+      </div>
+  }
+}
+
+MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
