@@ -4,6 +4,12 @@ const root = document.getElementById('root')
 
 const virtualDOM = (
   <div className="app">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4需要删除的节点</li>
+    </ul>
     <h1>hello</h1>
     <div>
       嵌套第一层
@@ -46,6 +52,11 @@ class ClassComponent extends MyReact.Component{
 
 const newVirtualDOM = (
   <div className="app123">
+    <ul>
+      <li>12</li>
+      <li>22</li>
+      <li>32</li>
+    </ul>
     <h1>new Hello world</h1>
     <span>
       修改后的嵌套第一层

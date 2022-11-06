@@ -28,5 +28,16 @@ export default function diff(virtualDOM, container, oldDOM){
     virtualDOM.children.forEach((child, i) => {
       diff(child, oldDOM, oldDOM.childNodes[i])
     });
+    // 获取所有老的节点
+    const oldChildNodes = oldDOM.childNodes
+    // 老节点数量多，需要更新完毕删除部分老节点
+    if(oldChildNodes.length > virtualDOM.children.length){
+      // 指针先指到老节点的末位，直到数量相等
+      let i = oldChildNodes.length - 1
+      while(i > virtualDOM.children.length - 1){
+        oldDOM.removeChild(oldChildNodes[i])
+        i--
+      }
+    }
   }
 }
