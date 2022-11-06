@@ -22,8 +22,11 @@ function MyComponent(){
   return <div>1234</div>
 }
 
-function Demo(){
-  return <MyComponent></MyComponent>
+function Demo(props){
+  return <div>
+    {props.name}
+    <MyComponent></MyComponent>
+  </div>
 }
 
-MyReact.render(<Demo></Demo>, root)
+MyReact.render(<Demo name="name"></Demo>, root)
