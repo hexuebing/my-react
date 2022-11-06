@@ -47,10 +47,10 @@ class ClassComponent extends MyReact.Component{
 const newVirtualDOM = (
   <div className="app123">
     <h1>new Hello world</h1>
-    <div>
+    <span>
       修改后的嵌套第一层
       <div>修改后的嵌套第二层</div>
-    </div>
+    </span>
     {false && <div>不该出现的JSX</div>}
     {true && <div>该出现的JSX</div>}
     修改后的文本
