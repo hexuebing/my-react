@@ -41,7 +41,8 @@ export default function updateNodeElement(newElement, virtualDOM, oldVirtualDOM 
         const eventName = propsName.toLowerCase().slice(2)
         newElement.removeEventListener(eventName, oldPropsValue)
       }else if(propsName !== "children"){
-        newElement.removeAttribute(propsName)
+        // class需要特殊处理，value和checked未能删除
+        newElement.removeAttribute(propsName === 'className' ? 'class' : propsName)
       }
     }
   }

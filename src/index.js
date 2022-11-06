@@ -13,7 +13,7 @@ const virtualDOM = (
     {true && <div>该出现的JSX</div>}
     文本
     <button onClick={() => alert("👋")}>按钮</button>
-    <input value="123"></input>
+    <input value="123" className="input-class"></input>
     <input type="checkbox" checked></input>
   </div>
 )
@@ -55,8 +55,8 @@ const newVirtualDOM = (
     {true && <div>该出现的JSX</div>}
     修改后的文本
     <button onClick={() => alert("👋")}>按钮</button>
-    <input value="789"></input>
-    <input type="checkbox" checked></input>
+    <input></input>
+    <input type="checkbox"></input>
   </div>
 )
 
