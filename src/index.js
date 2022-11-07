@@ -38,41 +38,51 @@ function Demo(props){
 class ClassComponent extends MyReact.Component{
   constructor(props){
     super(props)
+    this.state = {
+      title: '默认title'
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(){
+    this.setState({title: '修改后的title'})
   }
   render(){
+    console.log(this.state.title)
     return <div>
+      <h1>{this.state.title}</h1>
       {this.props.name}
       {this.props.age}
       hello class Component
+      <button onClick={this.handleClick}>修改title</button>
       </div>
   }
 }
 
-// MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
+MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
 
-const newVirtualDOM = (
-  <div className="app123">
-    <ul>
-      <li>12</li>
-      <li>22</li>
-      <li>32</li>
-    </ul>
-    <h1>new Hello world</h1>
-    <span>
-      修改后的嵌套第一层
-      <div>修改后的嵌套第二层</div>
-    </span>
-    {false && <div>不该出现的JSX</div>}
-    {true && <div>该出现的JSX</div>}
-    修改后的文本
-    <button onClick={() => alert("👋")}>按钮</button>
-    <input></input>
-    <input type="checkbox"></input>
-  </div>
-)
+// const newVirtualDOM = (
+//   <div className="app123">
+//     <ul>
+//       <li>12</li>
+//       <li>22</li>
+//       <li>32</li>
+//     </ul>
+//     <h1>new Hello world</h1>
+//     <span>
+//       修改后的嵌套第一层
+//       <div>修改后的嵌套第二层</div>
+//     </span>
+//     {false && <div>不该出现的JSX</div>}
+//     {true && <div>该出现的JSX</div>}
+//     修改后的文本
+//     <button onClick={() => alert("👋")}>按钮</button>
+//     <input></input>
+//     <input type="checkbox"></input>
+//   </div>
+// )
 
-MyReact.render(virtualDOM, root)
+// MyReact.render(virtualDOM, root)
 
-setTimeout(() => {
-  MyReact.render(newVirtualDOM, root)
-}, 5000)
+// setTimeout(() => {
+//   MyReact.render(newVirtualDOM, root)
+// }, 5000)

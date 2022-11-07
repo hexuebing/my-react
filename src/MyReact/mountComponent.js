@@ -24,5 +24,10 @@ function buildFunctionComponent(virtualDOM){
 
 function buildClassComponent(virtualDOM){
   const component = new virtualDOM.type(virtualDOM.props)
-  return component.render()
+  // 将类组件的实例保存到virtualDOM中，便于将dom放入到实例中
+  // virtualDOM._component = component
+  // return component.render()
+  const nextVirtualDOM = component.render()
+  nextVirtualDOM._component = component
+  return nextVirtualDOM
 }

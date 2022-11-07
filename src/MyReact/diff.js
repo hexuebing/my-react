@@ -7,7 +7,7 @@ import updateTextNode from "./updateTextNode"
  * 
  * @param {*} virtualDOM 虚拟DOM
  * @param {*} container 更新的DOM所放的地方
- * @param {*} oldDOM 久的dom对象
+ * @param {*} oldDOM 旧的dom对象
  */
 export default function diff(virtualDOM, container, oldDOM){
   const oldVirtualDOM = oldDOM && oldDOM._virtualDOM
