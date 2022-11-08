@@ -58,12 +58,12 @@ class ClassComponent extends MyReact.Component{
   }
 }
 
-MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
+// MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
 
-setTimeout(() => {
-  MyReact.render(<ClassComponent name="李四" age={20}></ClassComponent>, root)
-  // MyReact.render(<Demo name="李四" age={20}></Demo>, root)
-}, 2000)
+// setTimeout(() => {
+//   MyReact.render(<ClassComponent name="李四" age={20}></ClassComponent>, root)
+//   // MyReact.render(<Demo name="李四" age={20}></Demo>, root)
+// }, 2000)
 
 // const newVirtualDOM = (
 //   <div className="app123">
@@ -91,3 +91,21 @@ setTimeout(() => {
 // setTimeout(() => {
 //   MyReact.render(newVirtualDOM, root)
 // }, 5000)
+
+class DemoRef extends MyReact.Component{
+  constructor(props){
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(){
+    console.log(this.input.value)
+  }
+  render(){
+    return <div>
+      <input type="text" value="123" ref={input => this.input = input}></input>
+      <button onClick={this.handleClick}>获取值</button>
+    </div>
+  }
+}
+
+MyReact.render(<DemoRef></DemoRef>, root)

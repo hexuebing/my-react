@@ -17,5 +17,9 @@ export default function createDOMElement(virtualDOM){
   virtualDOM.children.forEach(child => {
     mountElement(child, newElement) // 所有子节点都调用一次，这里判断是不是原生DOM
   });
+
+  if(virtualDOM.props && virtualDOM.props.ref){
+    virtualDOM.props.ref(newElement)
+  }
   return newElement
 }
