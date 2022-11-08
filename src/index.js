@@ -60,6 +60,11 @@ class ClassComponent extends MyReact.Component{
 
 MyReact.render(<ClassComponent name="张三" age={18}></ClassComponent>, root)
 
+setTimeout(() => {
+  // MyReact.render(<ClassComponent name="李四" age={20}></ClassComponent>, root)
+  MyReact.render(<Demo name="李四" age={20}></Demo>, root)
+}, 2000)
+
 // const newVirtualDOM = (
 //   <div className="app123">
 //     <ul>

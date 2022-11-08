@@ -2,6 +2,7 @@ import createDOMElement from "./createDOMElement"
 import mountElement from "./mountElement"
 import updateNodeElement from "./updateNodeElement"
 import updateTextNode from "./updateTextNode"
+import diffComponent from "./diffComponent"
 
 /**
  * 
@@ -11,8 +12,12 @@ import updateTextNode from "./updateTextNode"
  */
 export default function diff(virtualDOM, container, oldDOM){
   const oldVirtualDOM = oldDOM && oldDOM._virtualDOM
+  const oldComponent = oldVirtualDOM && oldVirtualDOM._component
   if(!oldDOM){
     mountElement(virtualDOM, container)
+  }else if(typeof virtualDOM.type === "function"){
+    // 函数组件和类组件需要单独处理比对
+    diffComponent(virtualDOM, oldComponent, oldDOM, container)
   }else if(virtualDOM.type !== oldVirtualDOM.type && typeof virtualDOM !== 'function'){
     // 类型不同的节点，直接使用新DOM替换旧的DOM
     const newElement = createDOMElement(virtualDOM)

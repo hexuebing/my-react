@@ -1,7 +1,7 @@
 import isFunction from "./isFunction";
 import mountNativeElement from "./mountNativeElement";
 
-export default function mountComponent(virtualDOM, container){
+export default function mountComponent(virtualDOM, container, oldDOM){
   let nextVirtualDOM = null;
   if(virtualDOM.type.prototype && virtualDOM.type.prototype.render){
     // 类组件
@@ -14,7 +14,7 @@ export default function mountComponent(virtualDOM, container){
   if(isFunction(nextVirtualDOM)){
     mountComponent(nextVirtualDOM, container)
   }else{
-    mountNativeElement(nextVirtualDOM, container)
+    mountNativeElement(nextVirtualDOM, container, oldDOM)
   }
 }
 
