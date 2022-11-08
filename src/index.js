@@ -99,11 +99,15 @@ class DemoRef extends MyReact.Component{
   }
   handleClick(){
     console.log(this.input.value)
+    console.log(this.classCompt)
+    console.log(this.demo)
   }
   render(){
     return <div>
       <input type="text" value="123" ref={input => this.input = input}></input>
       <button onClick={this.handleClick}>获取值</button>
+      <ClassComponent name="张三" age={18} ref={classCompt => this.classCompt = classCompt}></ClassComponent>
+      <Demo ref={demo => this.demo = demo}></Demo>
     </div>
   }
 }
