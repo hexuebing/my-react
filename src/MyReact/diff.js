@@ -58,6 +58,9 @@ export default function diff(virtualDOM, container, oldDOM){
               // 非当前期望的节点，则插入到旧的前面 [1,2,3,4] -> [1,3,4] 将会把3插入到2前面
               oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
             }
+          }else{
+            // 新增元素
+            mountElement(child, oldDOM, oldDOM.childNodes[i])
           }
         }
       })

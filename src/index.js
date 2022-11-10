@@ -127,8 +127,9 @@ class DemoKey extends MyReact.Component{
   }
   handleClick(){
     const newState = JSON.parse(JSON.stringify(this.state))
-    const start = newState.persons.shift()
-    newState.persons.push(start)
+    // const start = newState.persons.shift()
+    // newState.persons.push(start)
+    newState.persons.splice(1, 0, {id: 88, name: '小飞棍来啦'})
     this.setState(newState)
   }
   render(){
