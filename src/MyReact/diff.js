@@ -30,9 +30,39 @@ export default function diff(virtualDOM, container, oldDOM){
       // 更新元素属性
       updateNodeElement(oldDOM, virtualDOM, oldVirtualDOM)
     }
-    virtualDOM.children.forEach((child, i) => {
-      diff(child, oldDOM, oldDOM.childNodes[i])
-    });
+
+    // 1. 将所有key属性的子元素放到一个单独的对象中
+    const keyMap = new Map()
+    for(let i = 0; i< oldDOM.childNodes.length; i++){
+      let domElement = oldDOM.childNodes[i]
+      if(domElement.nodeType === 1){ // 判断不是文本节点 为何是1？？？
+        let key = domElement.getAttribute("key")
+        if(key) keyMap.set(key, domElement)
+      }
+    }
+    // 子节点都没key
+    const hasNoKey = keyMap.size === 0
+    if(hasNoKey){
+      virtualDOM.children.forEach((child, i) => {
+        diff(child, oldDOM, oldDOM.childNodes[i])
+      });
+    }else{
+      // 2. 循环 virtualDOM 的子元素，获取 元素的key属性
+      virtualDOM.children.forEach((child, i) => {
+        let key = child.props.key
+        if(key){
+          let domElement = keyMap.get(`${key}`)
+          if(domElement){
+            // 3. 看当前位置是不是我们期望的元素
+            if(oldDOM.childNodes[i] && oldDOM.childNodes[i] !== domElement){
+              // 非当前期望的节点，则插入到旧的前面 [1,2,3,4] -> [1,3,4] 将会把3插入到2前面
+              oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
+            }
+          }
+        }
+      })
+    }
+
     // 获取所有老的节点
     const oldChildNodes = oldDOM.childNodes
     // 老节点数量多，需要更新完毕删除部分老节点

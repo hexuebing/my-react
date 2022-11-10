@@ -112,4 +112,33 @@ class DemoRef extends MyReact.Component{
   }
 }
 
-MyReact.render(<DemoRef></DemoRef>, root)
+class DemoKey extends MyReact.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      persons: [
+        {id: 1, name: '章三'},
+        {id: 2, name: '里斯'},
+        {id: 3, name: '王武'},
+        {id: 4, name: '找刘'}
+      ]
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(){
+    const newState = JSON.parse(JSON.stringify(this.state))
+    const start = newState.persons.shift()
+    newState.persons.push(start)
+    this.setState(newState)
+  }
+  render(){
+    return <ul>
+      {this.state.persons.map((p) => {
+        return <li key={p.id}>{p.name}</li>
+      })}
+      <button onClick={this.handleClick}>改变顺序</button>
+    </ul>
+  }
+}
+
+MyReact.render(<DemoKey></DemoKey>, root)
