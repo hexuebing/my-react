@@ -129,7 +129,7 @@ class DemoKey extends MyReact.Component{
     const newState = JSON.parse(JSON.stringify(this.state))
     // const start = newState.persons.shift()
     // newState.persons.push(start)
-    newState.persons.splice(1, 0, {id: 88, name: '小飞棍来啦'})
+    newState.persons.pop()
     this.setState(newState)
   }
   render(){
@@ -137,7 +137,7 @@ class DemoKey extends MyReact.Component{
       {this.state.persons.map((p) => {
         return <li key={p.id}>{p.name}</li>
       })}
-      <button onClick={this.handleClick}>改变顺序</button>
+      <button onClick={this.handleClick}>末尾删除</button>
     </ul>
   }
 }

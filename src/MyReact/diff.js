@@ -3,6 +3,7 @@ import mountElement from "./mountElement"
 import updateNodeElement from "./updateNodeElement"
 import updateTextNode from "./updateTextNode"
 import diffComponent from "./diffComponent"
+import unmountNode from "./unmountNode"
 
 /**
  * 
@@ -70,12 +71,32 @@ export default function diff(virtualDOM, container, oldDOM){
     const oldChildNodes = oldDOM.childNodes
     // 老节点数量多，需要更新完毕删除部分老节点
     if(oldChildNodes.length > virtualDOM.children.length){
-      // 指针先指到老节点的末位，直到数量相等
-      let i = oldChildNodes.length - 1
-      while(i > virtualDOM.children.length - 1){
-        oldDOM.removeChild(oldChildNodes[i])
-        i--
+      // 如果没有key，那说明按照原先的删除方式，从末尾删除就可以
+      if(hasNoKey){
+        // 指针先指到老节点的末位，直到数量相等
+        let i = oldChildNodes.length - 1
+        while(i > virtualDOM.children.length - 1){
+          oldDOM.removeChild(oldChildNodes[i])
+          i--
+        }
+      }else{
+        for (let index = 0; index < oldChildNodes.length; index++) {
+          const oldChildNode = oldChildNodes[index];
+          let oldChildNodeKey = oldChildNode._virtualDOM.props.key
+          let found = false // 标记是否在新的里面还继续有相同的key
+          for (let n = 0; n < virtualDOM.children.length; n++) {
+            const newChildNode = virtualDOM.children[n];
+            if(oldChildNodeKey === newChildNode.props.key){
+              found = true
+              break
+            }
+          }
+          if(!found){
+            unmountNode(oldChildNode)
+          }
+        }
       }
+      
     }
   }
 }
