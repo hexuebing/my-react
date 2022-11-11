@@ -25,4 +25,6 @@ export default class Component {
   updateProps(props){
     this.props = props
   }
+
+  componentWillUnmount(){}
 }

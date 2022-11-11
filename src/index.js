@@ -102,10 +102,13 @@ class DemoRef extends MyReact.Component{
     console.log(this.classCompt)
     console.log(this.demo)
   }
+  componentWillUnmount() {
+    console.log('componentWillUnmount')
+  }
   render(){
-    return <div>
-      <input type="text" value="123" ref={input => this.input = input}></input>
-      <button onClick={this.handleClick}>获取值</button>
+    return <div style="background: red;">
+      {/* <input type="text" value="123" ref={input => this.input = input}></input>
+      <button onClick={this.handleClick}>获取值</button> */}
       <ClassComponent name="张三" age={18} ref={classCompt => this.classCompt = classCompt}></ClassComponent>
       <Demo ref={demo => this.demo = demo}></Demo>
     </div>
@@ -135,7 +138,9 @@ class DemoKey extends MyReact.Component{
   render(){
     return <ul>
       {this.state.persons.map((p) => {
-        return <li key={p.id}>{p.name}</li>
+        return <li key={p.id}>
+          <DemoRef></DemoRef>
+        </li>
       })}
       <button onClick={this.handleClick}>末尾删除</button>
     </ul>
